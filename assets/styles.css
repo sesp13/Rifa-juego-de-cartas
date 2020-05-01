@@ -1,0 +1,189 @@
+/* GENERALES */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url(./fondo.jpg);
+    color: white;
+}
+
+.contenedor {
+    width: 85%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* HEADER */
+
+.header {
+    height: 150px;
+    background: url(./cabecera.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header p {
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 70px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Informacion principal */
+
+#mensaje-principal {
+    text-align: center;
+    border-bottom: 1px solid white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 5px;
+    font-size: 50px;
+}
+
+h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 39px;
+    font-weight: bold;
+}
+
+.mensaje {
+    font-size: 25px;
+}
+
+.informacion-partida {
+    height: 50px;
+}
+
+.informacion-partida h2 {
+    float: left;
+    padding: 10px;
+    font-size: 45px;
+}
+
+.informacion-partida h2 span {
+    font-style: italic;
+}
+
+.informacion-partida h3 {
+    float: right;
+    padding: 10px;
+    font-size: 38px;
+}
+
+/* TABLA DE INFORMACION */
+
+table {
+    width: 100%;
+    text-align: center;
+    border: 2px solid silver;
+}
+
+#inicial th {
+    padding: 5px;
+    font-size: 35px;
+}
+
+td {
+    border-top: 1px solid wheat;
+    padding: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+/* Botones de acción */
+
+.botones {
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.boton {
+    padding: 20px;
+    background: #555;
+    border-radius: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+#historico {
+    float: left;
+}
+
+#fin-turno {
+    float: right;
+}
+
+/* FOOTER */
+
+#footer {
+    clear: both;
+    height: 75px;
+    background: rgb(46, 46, 46);
+    text-align: center;
+    font-size: 20px;
+    padding: 15px;
+    margin-top: 100px;
+}
+
+#footer p {
+    padding-top: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* FORMULARIOS */
+
+.form-container {
+    width: 80%;
+    margin-bottom: 150px;
+}
+
+.form-control {
+    width: 95%;
+    padding: 15px;
+}
+
+.form-control label {
+    width: 100%;
+    padding: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+.form-control input {
+    width: 90%;
+    margin-top: 10px;
+    padding: 7.5px;
+    font-size: 20px;
+}
+
+.form-control input[type='number'] {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.form-control input[type='text']{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input[type='submit'] {
+    float: right;
+    padding: 10px;
+    color: white;
+    margin-right: 30px;
+    width: 25%;
+    margin: 0 auto;
+    margin-right: 10%;
+}
