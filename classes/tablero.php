@@ -99,15 +99,20 @@ class Tablero
 
             //Ajuste de puntajes para jugadores volados 
             //En una versión del futuro preguntaremos quienes desean continuar
-            $puntajeMaximo = $this->getPuntajeMaximo();
+            $volados = array();
+            $puntajeMaximo = $this->getDatosFinales();
             foreach ($jugadores as $jugador) {
                 if ($jugador->getEsVolado()) {
                     $jugador->setPuntaje($puntajeMaximo);
+                    $volados[] = $jugador;
                     //Quitarle la categoría de volado al jugador
                     $jugador->setEsVolado(false);
                 }
             }
-            
+
+            //Pasar los volados a la sección
+            $_SESSION['volados'] = $volados;
+
             //Pasar la variable a este objeto
             $contadorTurnos = $this->getContadorTurno() < $_SESSION['cantidad'] - 1 ? $this->getContadorTurno() + 1 : 0;
             $turno = $this->getTurno() + 1;
@@ -120,17 +125,37 @@ class Tablero
         }
     }
 
-    function getPuntajeMaximo()
+    function getDatosFinales()
     {
         $jugadores = $this->getJugadores();
+        //Vivos comprueba qué jugadores siguen en pie para la lucha
+        $vivos = array();
         $puntaje = 0;
         //Obtención del puntaje máximo
-        foreach ($jugadores as $jugador) {
-            if (!$jugador->getEsVolado() && $jugador->getPuntaje() > $puntaje) {
+        foreach ($jugadores as $indice => $jugador) {
+            $esVolado = $jugador->getEsVolado();
+            if (!$esVolado && $jugador->getPuntaje() > $puntaje) {
                 $puntaje = $jugador->getPuntaje();
+            }
+
+            if (!$esVolado) {
+                array_push($vivos, $indice);
             }
         }
 
+        //Redirección a la página del ganador
+        if (count($vivos) == 1) {
+            $_SESSION['ganador'] = $vivos[0];
+        }
+
         return $puntaje;
+    }
+
+    function getPerdedores($ganador)
+    {
+        $indice = $ganador;
+        $jugadores = $this->getJugadores();
+        unset($jugadores[$indice]);
+        return $jugadores;
     }
 }
