@@ -104,14 +104,14 @@ table caption {
 
 #inicial th {
     padding: 5px;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 td {
     border-top: 1px solid wheat;
     padding: 15px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 32px;
+    font-size: 28px;
 }
 
 /* Botones de acción */
@@ -183,14 +183,14 @@ td {
     width: 100%;
     padding: 5px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
+    font-size: 23px;
 }
 
 .form-control input {
     width: 90%;
     margin-top: 10px;
     padding: 7.5px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .form-control input[type='number'] {

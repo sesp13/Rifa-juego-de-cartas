@@ -89,4 +89,10 @@ class Jugador
         $voladas = $this->getVoladas();
         return $valorEntrada + ($voladas * $valorVolada);
     }
+
+    public function getPuntosRestantes()
+    {
+        $puntaje = $this->getPuntaje();
+        return 101 - $puntaje;
+    }
 }

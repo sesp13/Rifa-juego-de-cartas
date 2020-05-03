@@ -156,6 +156,11 @@ class Tablero
         $indice = $ganador;
         $jugadores = $this->getJugadores();
         unset($jugadores[$indice]);
+        //Restar 1 volada para cada perdedor, ya que la última volada no cuenta
+        foreach ($jugadores as $perdedor) {
+            $voladas = $perdedor->getVoladas();
+            $perdedor->setVoladas($voladas - 1);
+        }
         return $jugadores;
     }
 }

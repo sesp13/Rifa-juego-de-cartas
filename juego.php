@@ -20,19 +20,23 @@ $tablero = $_SESSION['tablero'];
         </div>
         <?php Utils::deleteSession('volados') ?>
     <?php endif; ?>
-    
+
     <div class="contenedor-seccion">
         <table>
             <tr id='inicial'>
                 <th>Nombre</th>
                 <th>Puntaje</th>
+                <th>Puntos restantes</th>
                 <th>Número de voladas</th>
+                <th>Deuda acumulada</th>
             </tr>
             <?php foreach ($tablero->getJugadores() as $indice => $jugador) : ?>
                 <tr>
                     <td><?= $jugador->getNombre() ?></td>
                     <td><?= $jugador->getPuntaje() ?></td>
+                    <td><?= $jugador->getPuntosRestantes() ?></td>
                     <td><?= $jugador->getVoladas() ?></td>
+                    <td><?= $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']) ?></td>
                 </tr>
             <?php endforeach ?>
         </table>
