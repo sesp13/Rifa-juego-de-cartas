@@ -15,15 +15,15 @@ frontController::enviarJuego();
             <?php Utils::deleteSession('error'); ?>
             <div class="form-control">
                 <label>¿Cuántos jugadores pariciparán en el juego?</label>
-                <input type="number" name="jugadores" min='1' value="2" step="1">
+                <input type="number" name="jugadores" min='2' value="2" step="1">
             </div>
             <div class="form-control">
                 <label>¿Cuál es el valor por cada volada en el juego?</label>
-                <input type="number" name="volada" min='1' value="2" step="1">
+                <input type="number" name="volada" min='1' step="1">
             </div>
             <div class="form-control">
                 <label>¿Cuál es el valor para entrar en el juego?</label>
-                <input type="number" name="entrada" min='1' value="2" step="1">
+                <input type="number" name="entrada" min='1'  step="1">
             </div>
 
             <input type="submit" name="enviar" class="boton" value="Enviar">

@@ -19,7 +19,7 @@ $cantidad = $_SESSION['cantidad'];
             <?php foreach ($tablero->getJugadores() as $indice => $jugador) : ?>
                 <div class="form-control">
                     <label>Puntos de <?= $jugador->getNombre() ?></label>
-                    <input type="text" name="jugador-<?= $indice ?>" placeholder="101">
+                    <input type="number" name="jugador-<?= $indice ?>">
                 </div>
             <?php endforeach; ?>
             <input type="submit" name="enviar" class="boton" value="Enviar">

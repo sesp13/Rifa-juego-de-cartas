@@ -39,7 +39,7 @@ $tablero = $_SESSION['tablero'];
     </div>
 
     <div class="botones">
-        <a id='historico' class="boton">Ver histórico de juegos</a>
+        <a id='historico' class="boton" href="jugadores.php?update=1">Añadir jugador</a>
         <a id='fin-turno' class="boton" href="finTurno.php">Fin de turno</a>
     </div>
 

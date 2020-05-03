@@ -125,7 +125,7 @@ class Tablero
         }
     }
 
-    function getDatosFinales()
+    function getDatosFinales($actualizar = null)
     {
         $jugadores = $this->getJugadores();
         //Vivos comprueba qué jugadores siguen en pie para la lucha
@@ -138,13 +138,13 @@ class Tablero
                 $puntaje = $jugador->getPuntaje();
             }
 
-            if (!$esVolado) {
+            if (!$esVolado && !isset($actualizar)) {
                 array_push($vivos, $indice);
             }
         }
 
         //Redirección a la página del ganador
-        if (count($vivos) == 1) {
+        if (count($vivos) == 1 && !isset($actualizar)) {
             $_SESSION['ganador'] = $vivos[0];
         }
 
