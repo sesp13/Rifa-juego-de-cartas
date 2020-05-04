@@ -1,6 +1,6 @@
 <?php
-require_once 'views/layouts/header.php';
-require_once 'controllers/frontController.php';
+require_once '../views/layouts/header.php';
+require_once '../controllers/frontController.php';
 Utils::deleteSession('ganador');
 Utils::redirigir('id', 'juego.php', true);
 $tablero = $_SESSION['tablero'];
@@ -60,4 +60,4 @@ $deudaTotal = 0;
     </div>
     <?php session_destroy() ?>
 </div>
-<?php require_once 'views/layouts/footer.php' ?>
+<?php require_once '../views/layouts/footer.php' ?>

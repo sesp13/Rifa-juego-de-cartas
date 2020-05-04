@@ -1,5 +1,5 @@
 <?php
-require_once 'views/layouts/header.php';
+require_once '../views/layouts/header.php';
 //require_once 'controllers/frontController.php';
 //frontController::comprobarSeteoJuego();
 //frontController::programarTablero();
@@ -26,4 +26,4 @@ $cantidad = $_SESSION['cantidad'];
         </form>
     </div>
 </div>
-<?php require_once 'views/layouts/footer.php' ?>
+<?php require_once '../views/layouts/footer.php' ?>

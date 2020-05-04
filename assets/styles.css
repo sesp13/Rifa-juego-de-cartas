@@ -18,6 +18,7 @@ body {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 a:visited{
@@ -112,6 +113,12 @@ td {
     padding: 15px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 28px;
+}
+
+.mensaje-eliminado{
+    font-size: 30px;
+    color: wheat;
+    font-weight: bold;
 }
 
 /* Botones de acción */

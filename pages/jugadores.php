@@ -1,6 +1,6 @@
 <?php
-require_once 'views/layouts/header.php';
-require_once 'controllers/frontController.php';
+require_once '../views/layouts/header.php';
+require_once '../controllers/frontController.php';
 $actualizar = isset($_GET['update']) ? true : false;
 if ($actualizar) {
     frontController::agregarJugador();
@@ -40,4 +40,4 @@ $cantidad = $actualizar ? 1 : $_SESSION['cantidad'];
         </form>
     </div>
 </div>
-<?php require_once 'views/layouts/footer.php' ?>
+<?php require_once '../views/layouts/footer.php' ?>

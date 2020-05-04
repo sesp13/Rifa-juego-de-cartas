@@ -1,7 +1,7 @@
 <?php
 
-require_once 'classes/jugador.php';
-require_once 'classes/tablero.php';
+require_once '../classes/jugador.php';
+require_once '../classes/tablero.php';
 
 class frontController
 {

@@ -1,4 +1,4 @@
-<?php require_once 'views/layouts/header.php';
+<?php require_once '../views/layouts/header.php';
 Utils::comprobarGanador();
 Utils::redirigir('tablero', 'jugadores.php');
 $tablero = $_SESSION['tablero'];
@@ -13,9 +13,9 @@ $tablero = $_SESSION['tablero'];
     </div>
 
     <?php if (isset($_SESSION['volados']) && !empty($_SESSION['volados'])) : ?>
-        <div class="contenedor-seccion">
+        <div class="contenedor-seccion" id='volados'>
             <?php foreach ($_SESSION['volados'] as $volado) : ?>
-                <p class="mensaje">El jugador <?= $volado->getNombre() ?> ha volado</p>
+                <p class="mensaje-eliminado">El jugador <?= $volado->getNombre() ?> ha volado</p>
             <?php endforeach; ?>
         </div>
         <?php Utils::deleteSession('volados') ?>
@@ -49,4 +49,4 @@ $tablero = $_SESSION['tablero'];
 
 </div>
 
-<?php require_once 'views/layouts/footer.php' ?>
+<?php require_once '../views/layouts/footer.php' ?>
