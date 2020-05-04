@@ -32,6 +32,11 @@ class Jugador
         return $this->deuda;
     }
 
+    public function getTope()
+    {
+        return $this->tope;
+    }
+
     //SETTER
     public function setNombre($nombre)
     {
@@ -56,12 +61,18 @@ class Jugador
         $this->deuda = $deuda;
     }
 
-    public function __construct($nombre)
+    public function setTope($tope)
+    {
+        $this->tope = $tope;
+    }
+
+    public function __construct($nombre, $tope)
     {
         $this->nombre = $nombre;
         $this->esVolado = false;
         $this->voladas = 0;
         $this->puntaje = 0;
+        $this->tope = $tope;
     }
 
     public function sumarPuntos($puntos)
@@ -69,7 +80,7 @@ class Jugador
         $puntosTotales = $this->getPuntaje() + $puntos;
         $this->setPuntaje($puntosTotales);
         //Comprobación para la cantidad de voladas
-        $vuelo = $this->getPuntaje() > 100 ? true : false;
+        $vuelo = $this->getPuntaje() > $this->getTope() ? true : false;
         $this->setEsVolado($vuelo);
         $voladas = $vuelo ? $this->getVoladas() + 1 : $this->getVoladas();
         $this->setVoladas($voladas);
@@ -93,6 +104,6 @@ class Jugador
     public function getPuntosRestantes()
     {
         $puntaje = $this->getPuntaje();
-        return 101 - $puntaje;
+        return $this->getTope() - $puntaje;
     }
 }

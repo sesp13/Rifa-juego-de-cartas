@@ -63,7 +63,6 @@ class Tablero
         $this->contadorturno = $contador;
     }
 
-
     public function __construct($valorEntrada, $valorVolada, $jugadores)
     {
         $this->valorEntrada = $valorEntrada;

@@ -11,6 +11,7 @@ class frontController
             $jugadores = isset($_POST['jugadores']) ? $_POST['jugadores'] : false;
             $volada = isset($_POST['volada']) ? $_POST['volada'] : false;
             $entrada = isset($_POST['entrada']) ? $_POST['entrada'] : false;
+            $tope = isset($_POST['tope']) ? $_POST['tope'] : false;
 
             //Validaciones numéricas
             if (!is_numeric($jugadores)) {
@@ -22,11 +23,15 @@ class frontController
             if (!is_numeric($entrada)) {
                 $entrada = false;
             }
+            if (!is_numeric($tope)) {
+                $tope = false;
+            }
 
-            if ($jugadores && $volada && $entrada) {
+            if ($jugadores && $volada && $entrada && $tope) {
                 $_SESSION['cantidad'] = intval($jugadores);
                 $_SESSION['volada'] = intval($volada);
                 $_SESSION['entrada'] = intval($entrada);
+                $_SESSION['tope'] = intval($tope);
 
                 header('Location:jugadores.php');
             } else {
@@ -50,7 +55,7 @@ class frontController
             $jugadores = array();
             for ($i = 1; $i < $cantidad + 1; $i++) {
                 if ($_POST["jugador-$i"] != '') {
-                    $jugadores[] = new Jugador($_POST["jugador-$i"]);
+                    $jugadores[] = new Jugador($_POST["jugador-$i"], $_SESSION['tope']);
                 } else {
                     return $_SESSION['error'] = 'Error al dar nombres, estos no pueden estar vacios';
                 }
@@ -59,6 +64,7 @@ class frontController
             //Programar el tablero
             $entrada = $_SESSION['entrada'];
             $volada = $_SESSION['volada'];
+            $tope = $_SESSION['tope'];
 
             $tablero = new Tablero($entrada, $volada, $jugadores);
             $_SESSION['tablero'] = $tablero;
@@ -79,7 +85,7 @@ class frontController
             if ($nombre) {
                 echo 'Estoy aquí también <br>';
                 $puntajeMaximo = $tablero->getDatosFinales(true);
-                $jugador = new Jugador($nombre);
+                $jugador = new Jugador($nombre, $_SESSION['tope']);
                 $jugador->setPuntaje($puntajeMaximo);
                 array_push($jugadores, $jugador);
                 $tablero->setJugadores($jugadores);

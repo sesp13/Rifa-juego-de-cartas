@@ -16,7 +16,7 @@ $deudaTotal = 0;
 
     <div class="datos-juego">
         <h3 class="entrada">Valor de la entrada: $ <?= $_SESSION['entrada'] ?></h3>
-        <h3 class="volada">Valor por volada: $ <?= $_SESSION['volada'] ?></h3>
+        <h3 class="volada">Juego a: <?= $_SESSION['tope'] ?> puntos</h3>
     </div>
     <div class="contenedor-turno-final">
         <h3 class="turnos-final">Total de turnos: <?= $tablero->getTurno() ?></h3>

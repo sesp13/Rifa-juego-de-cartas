@@ -23,7 +23,12 @@ frontController::enviarJuego();
             </div>
             <div class="form-control">
                 <label>¿Cuál es el valor para entrar en el juego?</label>
-                <input type="number" name="entrada" min='1'  step="1">
+                <input type="number" name="entrada" min='1' step="1">
+            </div>
+
+            <div class="form-control">
+                <label>¿Cuál es el tope de puntos para volar?</label>
+                <input type="number" name="tope" min='1' step="1" placeholder="Inserta el número máximo de puntos antes de volar">
             </div>
 
             <input type="submit" name="enviar" class="boton" value="Enviar">
