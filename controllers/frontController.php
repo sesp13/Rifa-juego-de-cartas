@@ -73,33 +73,4 @@ class frontController
         }
     }
 
-    public static function agregarJugador()
-    {
-        if (isset($_POST['enviar']) && isset($_SESSION['tablero']) && isset($_GET['update'])) {
-            // echo 'Estoy aquí <br>';
-            // die();
-            $cantidad = $_SESSION['cantidad'];
-            $tablero = $_SESSION['tablero'];
-            $jugadores = $tablero->getJugadores();
-            $nombre = $_POST['jugador-nuevo'] != '' ? $_POST['jugador-nuevo'] : false;
-            if ($nombre) {
-                echo 'Estoy aquí también <br>';
-                $puntajeMaximo = $tablero->getDatosFinales(true);
-                $jugador = new Jugador($nombre, $_SESSION['tope']);
-                $jugador->setPuntaje($puntajeMaximo);
-                array_push($jugadores, $jugador);
-                $tablero->setJugadores($jugadores);
-
-                //Actualizar la sesión
-                $_SESSION['cantidad'] = $cantidad + 1;
-                $_SESSION['tablero'];
-
-                // echo 'me voy a enviar<br>';
-                // die();
-                header('Location:juego.php');
-            } else {
-                $_SESSION['error'] = 'Error: No puedes dejar el nombre del nuevo jugador vacío';
-            }
-        }
-    }
 }

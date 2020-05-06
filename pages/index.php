@@ -3,7 +3,7 @@ require_once '../views/layouts/header.php';
 require_once '../controllers/frontController.php';
 frontController::enviarJuego();
 ?>
-<h1 id='mensaje-principal'>Bienvenido a la rifa</h1>
+<h1 id='mensaje-principal'>Bienvenido a la rifa V.1.0 </h1>
 <div class="contenedor">
     <h2>Programar juego</h2>
     <p class="mensaje">Vamos a elegir las reglas para este juego</p>

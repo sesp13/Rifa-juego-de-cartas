@@ -36,14 +36,13 @@ $tablero = $_SESSION['tablero'];
                     <td><?= $jugador->getPuntaje() ?></td>
                     <td><?= $jugador->getPuntosRestantes() ?></td>
                     <td><?= $jugador->getVoladas() ?></td>
-                    <td><?= $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']) ?></td>
+                    <td><?= $jugador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></td>
                 </tr>
             <?php endforeach ?>
         </table>
     </div>
 
     <div class="botones">
-        <a id='historico' class="boton" href="jugadores.php?update=1">Añadir jugador</a>
         <a id='fin-turno' class="boton" href="finTurno.php">Fin de turno</a>
     </div>
 
