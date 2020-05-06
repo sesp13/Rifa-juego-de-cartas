@@ -74,12 +74,6 @@ $tablero = $_SESSION['tablero'];
                 <input type="submit" name="eliminar-jugador" class="boton" value="Eliminar">
             </form>
         </div>
-        <button class="boton w-100" id='mostrarOtros'>Otras acciones</button>
-        <div id="otros-botones">
-            <div class="boton-div">
-                <a class="boton" href="">Eliminar</a>
-            </div>
-        </div>
     </div>
 
     <div class="botones f-right">
