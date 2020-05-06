@@ -21,8 +21,28 @@ a {
     color: white;
 }
 
-a:visited{
+a:visited {
     color: white;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.clearfix{
+    clear: both;
 }
 
 /* HEADER */
@@ -84,12 +104,18 @@ h2 {
     font-size: 38px;
 }
 
-.contenedor-seccion{
+
+.contenedor-seccion {
     padding-top: 10px;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
+.contenedor-seccion h4{
+    padding-top: 10px;
+    font-size: 25px ;
+    text-align: center;
+}   
 /* TABLA DE INFORMACION */
 
 table {
@@ -115,7 +141,7 @@ td {
     font-size: 28px;
 }
 
-.mensaje-eliminado{
+.mensaje-eliminado {
     font-size: 30px;
     color: wheat;
     font-weight: bold;
@@ -124,10 +150,17 @@ td {
 /* Botones de acción */
 
 .botones {
-    margin-top: 20px;
     padding: 20px;
     margin-bottom: 20px;
-    height: 50px;
+    height: auto;
+    width: 40%;
+}
+
+.boton-div{
+    margin-bottom: 20px;
+    clear: both;
+    width: 100%;
+    height: 50%;
 }
 
 .boton {
@@ -136,24 +169,29 @@ td {
     border-radius: 5px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px;
+    display: inline-block;
+    text-align: center;
+    color: white;
 }
 
 .boton:hover {
     cursor: pointer;
 }
 
-.boton-final{
+.boton-final {
     clear: both;
     float: none;
     text-align: center;
 }
 
-#historico {
-    float: left;
+#formulario-eliminar{
+    margin-top: 25px;
+    margin-bottom: 75px;
 }
 
-#fin-turno {
-    float: right;
+#formulario-eliminar form h3{
+    text-align: center;
+    font-size: 30px;
 }
 
 /* FOOTER */
@@ -200,6 +238,13 @@ td {
     font-size: 25px;
 }
 
+.form-control select{
+    width: 100%;
+    margin-top: 10px;
+    padding: 7px;
+    font-size: 20px;
+}
+
 .form-control input[type='number'] {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -220,9 +265,8 @@ input[type='submit'] {
 
 /* SECCION GANADOR JUEGO */
 
-
-.datos-juego{
-    width: 40%;
+.datos-juego {
+    width: 60%;
     float: left;
 }
 
@@ -232,8 +276,8 @@ input[type='submit'] {
     justify-content: left;
 }
 
-.contenedor-turno-final{
-    width: 40%;
+.contenedor-turno-final {
+    width: 35%;
     float: right;
     margin-bottom: 65px;
 }
@@ -244,19 +288,19 @@ input[type='submit'] {
     justify-content: right;
 }
 
-.datos-ganador{
+.datos-ganador {
     display: block;
     margin-bottom: 50px;
     width: 50%;
     float: left;
 }
 
-.boton-final-div{
+.boton-final-div {
     display: block;
     float: right;
 }
 
-.boton-final{
+.boton-final {
     display: flex;
     justify-content: center;
     align-items: center;

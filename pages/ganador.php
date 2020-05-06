@@ -2,6 +2,7 @@
 require_once '../views/layouts/header.php';
 require_once '../controllers/frontController.php';
 Utils::deleteSession('ganador');
+Utils::redirigir('tablero', 'index.php');
 Utils::redirigir('id', 'juego.php', true);
 $tablero = $_SESSION['tablero'];
 $id = $_GET['id'];
@@ -16,7 +17,11 @@ $deudaTotal = 0;
 
     <div class="datos-juego">
         <h3 class="entrada">Valor de la entrada: $ <?= $_SESSION['entrada'] ?></h3>
+        <h3 class="volada">Valor de la volada : $ <?= $_SESSION['volada'] ?></h3>
         <h3 class="volada">Juego a: <?= $_SESSION['tope'] ?> puntos</h3>
+        <?php if ($tablero->getValorActual() > 0) : ?>
+            <h3 class="volada">Deuda de jugadores eliminados: $ <?= $tablero->getValorActual() ?></h3>
+        <?php endif; ?>
     </div>
     <div class="contenedor-turno-final">
         <h3 class="turnos-final">Total de turnos: <?= $tablero->getTurno() ?></h3>
@@ -52,7 +57,7 @@ $deudaTotal = 0;
                         echo $ganador->getVoladas() == 1 ? 'vez' : 'veces'; ?> pero no importa valió la pena
         </p>
         <p class="mensaje">En total ahorraste: $ <?= $ganador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></p>
-        <p class="mensaje">En total ganaste: $ <?= $deudaTotal ?></p>
+        <p class="mensaje">En total ganaste: $ <?= $deudaTotal + $tablero->getValorActual() ?></p>
     </div>
 
     <div class="boton-final-div">

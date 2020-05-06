@@ -6,6 +6,7 @@ class Tablero
 {
     private $valorEntrada;
     private $valorVolada;
+    private $valorActual;
     //Cantidad de turnos que hay en el juego
     private $turno;
     //Contador del array para saber quién reparte el juego este turno
@@ -21,6 +22,10 @@ class Tablero
     public function getValorVolada()
     {
         return $this->valorVolada;
+    }
+    public function getValorActual()
+    {
+        return $this->valorActual;
     }
     public function getTurno()
     {
@@ -48,6 +53,11 @@ class Tablero
         $this->valorVolada = $valor;
     }
 
+    public function setValorActual($valor)
+    {
+        $this->valorActual = $valor;
+    }
+
     public function setTurno($valor)
     {
         $this->turno = $valor;
@@ -67,6 +77,7 @@ class Tablero
     {
         $this->valorEntrada = $valorEntrada;
         $this->valorVolada = $valorVolada;
+        $this->valorActual = 0;
         $this->jugadores = $jugadores;
         $this->turno = 1;
         $this->contadorturno = 0;
@@ -124,7 +135,7 @@ class Tablero
         }
     }
 
-    function getDatosFinales($actualizar = null)
+    public function getDatosFinales($actualizar = null)
     {
         $jugadores = $this->getJugadores();
         //Vivos comprueba qué jugadores siguen en pie para la lucha
@@ -150,7 +161,7 @@ class Tablero
         return $puntaje;
     }
 
-    function getPerdedores($ganador)
+    public function getPerdedores($ganador)
     {
         $indice = $ganador;
         $jugadores = $this->getJugadores();
@@ -161,5 +172,52 @@ class Tablero
             $perdedor->setVoladas($voladas - 1);
         }
         return $jugadores;
+    }
+
+    public function eliminarJugador($id)
+    {
+        $valorActual = $this->getValorActual();
+        $jugadores = $this->getJugadores();
+        $cantidad = $_SESSION['cantidad'];
+        $contadorTurno = $this->getContadorTurno();
+
+        if ($cantidad < 3) {
+            $_SESSION['error'] = 'Error, no se permite que el juego quede con un solo jugador';
+            return true;
+        }
+        if ($id <= count($jugadores)) {
+
+            //Captura del jugador a eliminar
+            $jugador = $jugadores[$id];
+
+            //Bajar el número de voladas para el jugador a salir
+            $voladasJugador = $jugador->getVoladas();
+            $voladasJugador = $voladasJugador != 0 ? $voladasJugador - 1 : 0;
+            $jugador->setVoladas($voladasJugador);
+            $deudaJugador = $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']);
+            //Aporte de la deuda al valor actual
+            $valorActual =+ $deudaJugador;
+            $this->setValorActual($valorActual);
+
+            //Calculo de la nueva cantidad
+            $_SESSION['cantidad'] = $cantidad - 1;
+            $contadorTurno = $contadorTurno != 0 ? $contadorTurno - 1 : 0;
+            $this->setContadorTurno($contadorTurno);
+
+            //Eliminación del jugador del array jugadores
+            unset($jugadores[$id]);
+            //Creación de un nuevo array con los indices correctos
+            $nuevosJugadores  = [];
+            foreach($jugadores as $x){
+                $nuevosJugadores[] = $x;
+            }
+            $this->setJugadores($nuevosJugadores);
+
+            $_SESSION['error'] = "El jugador {$jugador->getNombre()} ha sido eliminado y debe aportar  $ $deudaJugador";
+            return true;
+        } else {
+            $_SESSION['error'] = 'Error, índice mal enviado';
+            return true;
+        }
     }
 }

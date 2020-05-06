@@ -2,15 +2,24 @@
 Utils::comprobarGanador();
 Utils::redirigir('tablero', 'jugadores.php');
 $tablero = $_SESSION['tablero'];
+// var_dump($_SESSION);
+// die();
 ?>
 <h1 id='mensaje-principal'>Tablero de juego</h1>
 <div class="contenedor">
     <div class="contenedor-seccion">
         <div class="informacion-partida">
-            <h2>Este turno reparte: <?= $tablero->repartidorTurno() ?></h2>
+            <h2>Este turno reparte: <span><?= $tablero->repartidorTurno() ?></span></h2>
             <h3>Turno: <?= $tablero->getTurno() ?></h3>
         </div>
     </div>
+
+    <?php if (isset($_SESSION['error'])) : ?>
+        <div class="contenedor-seccion" id='volados'>
+            <p class='mensaje-eliminado'><?= $_SESSION['error'] ?></p>
+        </div>
+    <?php endif; ?>
+    <?php Utils::deleteSession('error'); ?>
 
     <?php if (isset($_SESSION['volados']) && !empty($_SESSION['volados'])) : ?>
         <div class="contenedor-seccion" id='volados'>
@@ -36,17 +45,50 @@ $tablero = $_SESSION['tablero'];
                     <td><?= $jugador->getPuntaje() ?></td>
                     <td><?= $jugador->getPuntosRestantes() ?></td>
                     <td><?= $jugador->getVoladas() ?></td>
-                    <td><?= $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']) ?></td>
+                    <td><?= $jugador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada())?></td>
                 </tr>
             <?php endforeach ?>
         </table>
+        <?php if ($tablero->getValorActual() > 0) : ?>
+            <h4>Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
+        <?php endif; ?>
     </div>
 
-    <div class="botones">
-        <a id='historico' class="boton" href="jugadores.php?update=1">Añadir jugador</a>
-        <a id='fin-turno' class="boton" href="finTurno.php">Fin de turno</a>
+    <div class="botones f-left">
+        <div class="boton-div">
+            <a class="boton" href="jugadores.php?update=1">Añadir jugador</a>
+            <a class="boton" id='eliminar-jugador'>Eliminar jugador</a>
+        </div>
+        <div id='formulario-eliminar'>
+            <?php require_once 'logic/eliminarJugador.php' ?>
+            <form method="POST">
+                <h3>Eliminar un jugador</h3>
+                <div class="form-control">
+                    <label>Escoge un jugador para eliminar</label>
+                    <select name="jugador">
+                        <?php foreach ($tablero->getJugadores() as $indice => $jugador) : ?>
+                            <option value="<?= $indice ?>"> <?= $jugador->getNombre() ?> </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <input type="submit" name="eliminar-jugador" class="boton" value="Eliminar">
+            </form>
+        </div>
+        <button class="boton w-100" id='mostrarOtros'>Otras acciones</button>
+        <div id="otros-botones">
+            <div class="boton-div">
+                <a class="boton" href="">Eliminar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="botones f-right">
+        <div class="boton-div">
+            <a class="boton f-right" href="finTurno.php">Fin de turno</a>
+        </div>
     </div>
 
 </div>
-
 <?php require_once '../views/layouts/footer.php' ?>
+<!-- archivos de js -->
+<script src="../js/juego.js"></script>
