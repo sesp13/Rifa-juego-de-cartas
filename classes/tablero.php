@@ -12,6 +12,7 @@ class Tablero
     //Contador del array para saber quién reparte el juego este turno
     private $contadorturno;
     private $jugadores;
+    private $historico;
 
     // GETTER
 
@@ -40,6 +41,10 @@ class Tablero
     public function getContadorTurno()
     {
         return $this->contadorturno;
+    }
+    public function getHistorico()
+    {
+        return $this->historico;
     }
 
     //SETTER
@@ -73,12 +78,18 @@ class Tablero
         $this->contadorturno = $contador;
     }
 
+    public function setHistorico($array)
+    {
+        $this->historico = $array;
+    }
+
     public function __construct($valorEntrada, $valorVolada, $jugadores)
     {
         $this->valorEntrada = $valorEntrada;
         $this->valorVolada = $valorVolada;
         $this->valorActual = 0;
         $this->jugadores = $jugadores;
+        $this->historico = [];
         $this->turno = 1;
         $this->contadorturno = 0;
     }
@@ -110,6 +121,8 @@ class Tablero
             //Ajuste de puntajes para jugadores volados 
             //En una versión del futuro preguntaremos quienes desean continuar
             $volados = array();
+            //Paso de datos al histórico
+            $this->armarHistorico($jugadores);
             $puntajeMaximo = $this->getDatosFinales();
             foreach ($jugadores as $jugador) {
                 if ($jugador->getEsVolado()) {
@@ -133,6 +146,29 @@ class Tablero
             $this->setJugadores($jugadores);
             header('Location:juego.php');
         }
+    }
+
+    public function armarHistorico($jugadores)
+    {
+        $historico = $this->getHistorico();
+        $turno = $this->getTurno();
+
+        $datosJugadores = [];
+        foreach ($jugadores as $jugador) {
+            $datosJugadores[] = [
+                'nombre' => $jugador->getNombre(),
+                'puntaje' => $jugador->getPuntaje(),
+                'vuelo' => $jugador->getEsVolado(),
+                'voladas' => $jugador->getVoladas()
+            ];
+        }
+
+        array_push($historico, [
+            'turno' => $turno,
+            'jugadores' => $datosJugadores
+        ]);
+
+        $this->setHistorico($historico);
     }
 
     public function getDatosFinales($actualizar = null)
@@ -196,7 +232,7 @@ class Tablero
             $jugador->setVoladas($voladasJugador);
             $deudaJugador = $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']);
             //Aporte de la deuda al valor actual
-            $valorActual =+ $deudaJugador;
+            $valorActual = +$deudaJugador;
             $this->setValorActual($valorActual);
 
             //Calculo de la nueva cantidad
@@ -208,7 +244,7 @@ class Tablero
             unset($jugadores[$id]);
             //Creación de un nuevo array con los indices correctos
             $nuevosJugadores  = [];
-            foreach($jugadores as $x){
+            foreach ($jugadores as $x) {
                 $nuevosJugadores[] = $x;
             }
             $this->setJugadores($nuevosJugadores);

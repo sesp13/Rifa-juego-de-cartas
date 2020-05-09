@@ -1,6 +1,11 @@
 <?php
 require_once '../views/layouts/header.php';
 require_once '../controllers/frontController.php';
+//Borrar juegos pasados
+if (isset($_SESSION)) {
+    session_destroy();
+    session_start();
+}
 frontController::enviarJuego();
 ?>
 <h1 id='mensaje-principal'>Bienvenido a la rifa</h1>

@@ -58,11 +58,17 @@ $deudaTotal = 0;
         </p>
         <p class="mensaje">En total ahorraste: $ <?= $ganador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></p>
         <p class="mensaje">En total ganaste: $ <?= $deudaTotal + $tablero->getValorActual() ?></p>
+        <a class="boton" href="historico.php">Ver el histórico de juegos</a>
     </div>
 
     <div class="boton-final-div">
         <a class="boton boton-final" href="index.php">Volver al menú principal</a>
     </div>
-    <?php session_destroy() ?>
+    <?php
+    //Sesión del histórico final
+    $historico = $_SESSION['tablero']->getHistorico();
+    $_SESSION['historico'] = $historico;
+    $_SESSION['idGanador'] = $id;
+    ?>
 </div>
 <?php require_once '../views/layouts/footer.php' ?>

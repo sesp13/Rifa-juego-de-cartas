@@ -1,9 +1,10 @@
 <?php require_once '../views/layouts/header.php';
 Utils::comprobarGanador();
 Utils::redirigir('tablero', 'jugadores.php');
+if(isset($_SESSION['historico'])){
+    header('Location:index.php');
+}
 $tablero = $_SESSION['tablero'];
-// var_dump($_SESSION);
-// die();
 ?>
 <h1 id='mensaje-principal'>Tablero de juego</h1>
 <div class="contenedor">
@@ -45,7 +46,7 @@ $tablero = $_SESSION['tablero'];
                     <td><?= $jugador->getPuntaje() ?></td>
                     <td><?= $jugador->getPuntosRestantes() ?></td>
                     <td><?= $jugador->getVoladas() ?></td>
-                    <td><?= $jugador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada())?></td>
+                    <td><?= $jugador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></td>
                 </tr>
             <?php endforeach ?>
         </table>
@@ -77,7 +78,7 @@ $tablero = $_SESSION['tablero'];
         <button class="boton w-100" id='mostrarOtros'>Otras acciones</button>
         <div id="otros-botones">
             <div class="boton-div">
-                <a class="boton" href="">Eliminar</a>
+                <a class="boton" href="historico.php">Histórico de juegos</a>
             </div>
         </div>
     </div>

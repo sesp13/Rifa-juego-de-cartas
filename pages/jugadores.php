@@ -1,6 +1,10 @@
 <?php
 require_once '../views/layouts/header.php';
 require_once '../controllers/frontController.php';
+if (isset($_SESSION['historico'])) {
+    header('Location:index.php');
+}
+// Utils::redirigir('cantidad', 'index.php');
 $actualizar = isset($_GET['update']) ? true : false;
 if ($actualizar) {
     frontController::agregarJugador();
