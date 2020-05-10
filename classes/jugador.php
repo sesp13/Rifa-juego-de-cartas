@@ -104,6 +104,6 @@ class Jugador
     public function getPuntosRestantes()
     {
         $puntaje = $this->getPuntaje();
-        return $this->getTope() - $puntaje;
+        return $this->getTope() - $puntaje + 1;
     }
 }

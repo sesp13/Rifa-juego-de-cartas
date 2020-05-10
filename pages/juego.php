@@ -36,7 +36,7 @@ $tablero = $_SESSION['tablero'];
             <tr id='inicial'>
                 <th>Nombre</th>
                 <th>Puntaje</th>
-                <th>Puntos restantes</th>
+                <th>Vuela con</th>
                 <th>Número de voladas</th>
                 <th>Deuda acumulada</th>
             </tr>
