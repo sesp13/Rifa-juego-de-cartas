@@ -78,7 +78,8 @@ $tablero = $_SESSION['tablero'];
         <button class="boton w-100" id='mostrarOtros'>Otras acciones</button>
         <div id="otros-botones">
             <div class="boton-div">
-                <a class="boton" href="historico.php">Histórico de juegos</a>
+                <a class="boton w-100" href="historico.php">Histórico de juegos</a>
+                <a class="boton w-100" href="finTurno.php?editar=1">Editar último turno</a>
             </div>
         </div>
     </div>

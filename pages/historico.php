@@ -13,12 +13,16 @@ $historico = $tablero->getHistorico();
                     <caption>Turno: <?= $elemento['turno'] ?></caption>
                     <tr id='inicial'>
                         <th>Jugador</th>
-                        <th>Puntaje</th>
+                        <th>Puntaje Inicial</th>
+                        <th>Puntaje Adquirido</th>
+                        <th>Puntaje Total</th>
                         <th>Voladas</th>
                     </tr>
                     <?php foreach ($elemento['jugadores'] as $jugador) : ?>
                         <tr>
                             <td><?= $jugador['nombre'] ?></td>
+                            <td><?= $jugador['puntaje'] - $jugador['puntajeAdquirido'] ?></td>
+                            <td><?= $jugador['puntajeAdquirido'] ?></td>
                             <td><?= !$jugador['vuelo'] ? $jugador['puntaje'] : 'Voló en el turno' ?></td>
                             <td><?= $jugador['voladas'] ?></td>
                         </tr>

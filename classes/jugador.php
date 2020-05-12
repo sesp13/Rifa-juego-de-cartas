@@ -4,6 +4,8 @@ class Jugador
 {
     private $nombre;
     private $puntaje;
+    private $puntajeAdquirido;
+    private $puntajePostVuelo;
     private $esVolado;
     private $voladas;
     private $deuda;
@@ -16,6 +18,15 @@ class Jugador
     public function getPuntaje()
     {
         return $this->puntaje;
+    }
+    public function getPuntajeAdquirido()
+    {
+        return $this->puntajeAdquirido;
+    }
+
+    public function getPuntajePostVuelo()
+    {
+        return $this->puntajePostVuelo;
     }
     public function getVoladas()
     {
@@ -46,6 +57,17 @@ class Jugador
     {
         $this->puntaje = $puntaje;
     }
+
+    public function setPuntajeAdquirido($puntaje)
+    {
+        $this->puntajeAdquirido = $puntaje;
+    }
+
+    public function setPuntajePostVuelo($puntaje)
+    {
+        $this->puntajePostVuelo = $puntaje;
+    }
+
     public function setVoladas($voladas)
     {
         $this->voladas = $voladas;
@@ -77,11 +99,23 @@ class Jugador
 
     public function sumarPuntos($puntos)
     {
+        //Seteado de los puntos adquiridos
+        $this->setPuntajeAdquirido($puntos);
+
         $puntosTotales = $this->getPuntaje() + $puntos;
+        //Seteado de los puntos totales
         $this->setPuntaje($puntosTotales);
-        //Comprobación para la cantidad de voladas
+
+        //Comprobación de la volada
         $vuelo = $this->getPuntaje() > $this->getTope() ? true : false;
         $this->setEsVolado($vuelo);
+
+
+        //Uso del puntaje post vuelo para calculos si se requiere editar un turno
+        $puntajePostVuelo = $this->getPuntaje();
+        $this->setPuntajePostVuelo($puntajePostVuelo);
+
+        //Seteo de la cantidad de voladas
         $voladas = $vuelo ? $this->getVoladas() + 1 : $this->getVoladas();
         $this->setVoladas($voladas);
     }
@@ -105,5 +139,20 @@ class Jugador
     {
         $puntaje = $this->getPuntaje();
         return $this->getTope() - $puntaje + 1;
+    }
+
+    //Este método se usa cuando se edita un turno
+    public function devolverCambios()
+    {
+        $voladas = $this->getVoladas();
+        $puntajeAdquirido = $this->getPuntajeAdquirido();
+        $puntajePostVuelo = $this->getPuntajePostVuelo();
+
+        $puntajeAnterior = $puntajePostVuelo - $puntajeAdquirido;
+
+        $valorVoladas = $voladas > 0 ? $voladas - 1 : 0;
+
+        $this->setPuntaje($puntajeAnterior);
+        $this->setVoladas($valorVoladas);
     }
 }

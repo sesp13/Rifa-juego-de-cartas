@@ -41,7 +41,7 @@ a:visited {
     width: 100%;
 }
 
-.clearfix{
+.clearfix {
     clear: both;
 }
 
@@ -104,18 +104,18 @@ h2 {
     font-size: 38px;
 }
 
-
 .contenedor-seccion {
     padding-top: 10px;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
-.contenedor-seccion h4{
+.contenedor-seccion h4 {
     padding-top: 10px;
-    font-size: 25px ;
+    font-size: 25px;
     text-align: center;
-}   
+}
+
 /* TABLA DE INFORMACION */
 
 table {
@@ -156,7 +156,7 @@ td {
     width: 40%;
 }
 
-.boton-div{
+.boton-div {
     margin-bottom: 20px;
     clear: both;
     width: 100%;
@@ -172,6 +172,8 @@ td {
     display: inline-block;
     text-align: center;
     color: white;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .boton:hover {
@@ -184,12 +186,12 @@ td {
     text-align: center;
 }
 
-#formulario-eliminar{
+#formulario-eliminar {
     margin-top: 25px;
     margin-bottom: 75px;
 }
 
-#formulario-eliminar form h3{
+#formulario-eliminar form h3 {
     text-align: center;
     font-size: 30px;
 }
@@ -216,7 +218,7 @@ td {
 
 .form-container {
     width: 80%;
-    margin-bottom: 150px;
+    margin-bottom: 75px;
 }
 
 .form-control {
@@ -238,7 +240,7 @@ td {
     font-size: 25px;
 }
 
-.form-control select{
+.form-control select {
     width: 100%;
     margin-top: 10px;
     padding: 7px;
@@ -261,6 +263,10 @@ input[type='submit'] {
     width: 25%;
     margin: 0 auto;
     margin-right: 10%;
+}
+
+#finTurno{
+    margin-bottom: 70px;
 }
 
 /* SECCION GANADOR JUEGO */

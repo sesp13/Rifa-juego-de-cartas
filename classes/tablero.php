@@ -102,10 +102,18 @@ class Tablero
     }
 
     //Final del turno
-    public function finalDeTurno()
+    public function finalDeTurno($actualizar = null)
     {
         if (isset($_POST['enviar'])) {
             $jugadores = $this->getJugadores();
+
+            //Logica para actualizar el jugador
+            if ($actualizar && $this->getTurno() > 1) {
+                foreach ($jugadores as $indice => $jugador) {
+                    $jugador->devolverCambios();
+                }
+            }
+
             foreach ($jugadores as $indice => $jugador) {
                 //Comprobar valores
                 if ($_POST["jugador-$indice"] == ''  || !is_numeric($_POST["jugador-$indice"])) {
@@ -122,7 +130,12 @@ class Tablero
             //En una versión del futuro preguntaremos quienes desean continuar
             $volados = array();
             //Paso de datos al histórico
-            $this->armarHistorico($jugadores);
+            if ($actualizar && $this->getTurno() > 1) {
+                $this->armarHistorico($jugadores, true);
+            } else {
+                $this->armarHistorico($jugadores);
+            }
+
             $puntajeMaximo = $this->getDatosFinales();
             foreach ($jugadores as $jugador) {
                 if ($jugador->getEsVolado()) {
@@ -137,36 +150,45 @@ class Tablero
             $_SESSION['volados'] = $volados;
 
             //Pasar la variable a este objeto
-            $contadorTurnos = $this->getContadorTurno() < $_SESSION['cantidad'] - 1 ? $this->getContadorTurno() + 1 : 0;
-            $turno = $this->getTurno() + 1;
-
+            if (!($actualizar && $this->getTurno() > 1)) {
+                $contadorTurnos = $this->getContadorTurno() < $_SESSION['cantidad'] - 1 ? $this->getContadorTurno() + 1 : 0;
+                $turno = $this->getTurno() + 1;
+                $this->setContadorTurno($contadorTurnos);
+                $this->setTurno($turno);
+            }
+            
             //Actualizar el objeto
-            $this->setContadorTurno($contadorTurnos);
-            $this->setTurno($turno);
             $this->setJugadores($jugadores);
             header('Location:juego.php');
         }
     }
 
-    public function armarHistorico($jugadores)
+    public function armarHistorico($jugadores, $actualizar = null)
     {
         $historico = $this->getHistorico();
         $turno = $this->getTurno();
-
+        // Decir cuantos puntos ganó el jugador en esta partida
         $datosJugadores = [];
         foreach ($jugadores as $jugador) {
             $datosJugadores[] = [
                 'nombre' => $jugador->getNombre(),
                 'puntaje' => $jugador->getPuntaje(),
+                'puntajeAdquirido' => $jugador->getPuntajeAdquirido(),
                 'vuelo' => $jugador->getEsVolado(),
                 'voladas' => $jugador->getVoladas()
             ];
         }
-
-        array_push($historico, [
-            'turno' => $turno,
-            'jugadores' => $datosJugadores
-        ]);
+        if ($actualizar) {
+            $historico[count($historico) - 1] =[ 
+                'turno' => $turno - 1,
+                'jugadores' => $datosJugadores
+            ];
+        } else {
+            array_push($historico, [
+                'turno' => $turno,
+                'jugadores' => $datosJugadores
+            ]);
+        }
 
         $this->setHistorico($historico);
     }
@@ -237,7 +259,7 @@ class Tablero
 
             //Calculo de la nueva cantidad
             $_SESSION['cantidad'] = $cantidad - 1;
-            $contadorTurno = $contadorTurno != 0 ? $contadorTurno - 1 : 0;
+            $contadorTurno = $contadorTurno == $cantidad - 1 ? $contadorTurno - 1 : $contadorTurno;
             $this->setContadorTurno($contadorTurno);
 
             //Eliminación del jugador del array jugadores
