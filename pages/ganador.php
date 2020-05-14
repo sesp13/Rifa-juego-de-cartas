@@ -8,6 +8,7 @@ $tablero = $_SESSION['tablero'];
 $id = $_GET['id'];
 $ganador = $tablero->getJugadores()[$id];
 $perdedores = $tablero->getPerdedores($id);
+$eliminados = $tablero->getEliminados();
 $deudaTotal = 0;
 // $cantidad = $_SESSION['cantidad'];
 ?>
@@ -42,10 +43,19 @@ $deudaTotal = 0;
             ?>
                 <tr>
                     <td><?= $perdedor->getNombre() ?> </td>
-                    <td class='moneda'><?= $deuda ?></td>
+                    <td class='moneda'>$ <?= $deuda ?></td>
                     <td><?= $perdedor->getVoladas() ?></td>
                 </tr>
             <?php endforeach; ?>
+            <?php if (count($eliminados) > 0) :
+                foreach ($eliminados as $jugador) : ?>
+                <tr>
+                    <td class="nombre-eliminado"><?= $jugador['nombre'] ?> (Eliminado)</td>
+                    <td class="moneda">$ <?= $jugador['deuda'] ?> </td>
+                    <td><?= $jugador['voladas'] ?> </td>
+                </tr>                    
+            <?php endforeach;
+            endif; ?>
         </table>
     </div>
 

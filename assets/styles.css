@@ -226,6 +226,12 @@ td {
     padding: 15px;
 }
 
+.form-control p{
+    padding: 10px;
+    font-size: 20px;
+    font-style: italic;
+}
+
 .form-control label {
     width: 100%;
     padding: 5px;
@@ -301,6 +307,10 @@ input[type='submit'] {
     float: left;
 }
 
+.datos-ganador .boton{
+    margin-top: 15px;
+}
+
 .boton-final-div {
     display: block;
     float: right;
@@ -311,4 +321,12 @@ input[type='submit'] {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+}
+
+.moneda{
+    font-style: italic;
+}
+
+.nombre-eliminado{
+    color: rgb(212, 91, 91);
 }

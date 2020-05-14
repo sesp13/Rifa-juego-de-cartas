@@ -12,6 +12,7 @@ class Tablero
     //Contador del array para saber quién reparte el juego este turno
     private $contadorturno;
     private $jugadores;
+    private $eliminados;
     private $historico;
 
     // GETTER
@@ -42,9 +43,15 @@ class Tablero
     {
         return $this->contadorturno;
     }
+
     public function getHistorico()
     {
         return $this->historico;
+    }
+
+    public function getEliminados()
+    {
+        return $this->eliminados;
     }
 
     //SETTER
@@ -83,6 +90,11 @@ class Tablero
         $this->historico = $array;
     }
 
+    public function setEliminados($array)
+    {
+        $this->eliminados = $array;
+    }
+
     public function __construct($valorEntrada, $valorVolada, $jugadores)
     {
         $this->valorEntrada = $valorEntrada;
@@ -92,6 +104,7 @@ class Tablero
         $this->historico = [];
         $this->turno = 1;
         $this->contadorturno = 0;
+        $this->eliminados = [];
     }
 
     public function repartidorTurno()
@@ -247,12 +260,22 @@ class Tablero
 
             //Captura del jugador a eliminar
             $jugador = $jugadores[$id];
+            $eliminados = $this->getEliminados();
 
             //Bajar el número de voladas para el jugador a salir
             $voladasJugador = $jugador->getVoladas();
             $voladasJugador = $voladasJugador != 0 ? $voladasJugador - 1 : 0;
             $jugador->setVoladas($voladasJugador);
             $deudaJugador = $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']);
+            
+            //Agregar el jugador al array de eliminados
+            array_push($eliminados, [
+                'nombre' => $jugador->getNombre(),
+                'deuda' => $deudaJugador,
+                'voladas' => $voladasJugador
+            ]);
+            $this->setEliminados($eliminados);
+
             //Aporte de la deuda al valor actual
             $valorActual = +$deudaJugador;
             $this->setValorActual($valorActual);
