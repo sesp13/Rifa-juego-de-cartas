@@ -25,7 +25,7 @@ $deudaTotal = 0;
         <?php endif; ?>
     </div>
     <div class="contenedor-turno-final">
-        <h3 class="turnos-final">Total de turnos: <?= $tablero->getTurno() ?></h3>
+        <h3 class="turnos-final">Total de turnos: <?= $tablero->getTurno() - 1 ?></h3>
     </div>
     <div class="contenedor-seccion">
         <!-- <h3></h3> -->
