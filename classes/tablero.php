@@ -169,7 +169,7 @@ class Tablero
                 $this->setContadorTurno($contadorTurnos);
                 $this->setTurno($turno);
             }
-            
+
             //Actualizar el objeto
             $this->setJugadores($jugadores);
             header('Location:juego.php');
@@ -192,7 +192,7 @@ class Tablero
             ];
         }
         if ($actualizar) {
-            $historico[count($historico) - 1] =[ 
+            $historico[count($historico) - 1] = [
                 'turno' => $turno - 1,
                 'jugadores' => $datosJugadores
             ];
@@ -237,10 +237,13 @@ class Tablero
         $indice = $ganador;
         $jugadores = $this->getJugadores();
         unset($jugadores[$indice]);
-        //Restar 1 volada para cada perdedor, ya que la última volada no cuenta
-        foreach ($jugadores as $perdedor) {
-            $voladas = $perdedor->getVoladas();
-            $perdedor->setVoladas($voladas - 1);
+        if (!isset($_SESSION['perdedores'])) {
+            //Restar 1 volada para cada perdedor, ya que la última volada no cuenta
+            foreach ($jugadores as $perdedor) {
+                $voladas = $perdedor->getVoladas();
+                $perdedor->setVoladas($voladas - 1);
+            }
+            $_SESSION['perdedores'] = true;
         }
         return $jugadores;
     }
@@ -267,7 +270,7 @@ class Tablero
             $voladasJugador = $voladasJugador != 0 ? $voladasJugador - 1 : 0;
             $jugador->setVoladas($voladasJugador);
             $deudaJugador = $jugador->calcularDeuda($_SESSION['volada'], $_SESSION['entrada']);
-            
+
             //Agregar el jugador al array de eliminados
             array_push($eliminados, [
                 'nombre' => $jugador->getNombre(),

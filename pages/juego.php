@@ -54,8 +54,14 @@ $tablero = $_SESSION['tablero'];
             <h4>Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
         <?php endif; ?>
     </div>
+    
+    <div class="botones f-none-right">
+        <div class="boton-div">
+            <a class="boton f-none-right" href="finTurno.php">Fin de turno</a>
+        </div>
+    </div>
 
-    <div class="botones f-left">
+    <div class="botones f-none-left">
         <div class="boton-div">
             <a class="boton" href="jugadores.php?update=1">Añadir jugador</a>
             <a class="boton" id='eliminar-jugador'>Eliminar jugador</a>
@@ -75,20 +81,15 @@ $tablero = $_SESSION['tablero'];
                 <input type="submit" name="eliminar-jugador" class="boton" value="Eliminar">
             </form>
         </div>
-        <button class="boton w-100" id='mostrarOtros'>Otras acciones</button>
+        <button class="boton w-100-big" id='mostrarOtros'>Otras acciones</button>
         <div id="otros-botones">
             <div class="boton-div">
-                <a class="boton w-100" href="historico.php">Histórico de juegos</a>
-                <a class="boton w-100" href="finTurno.php?editar=1">Editar último turno</a>
+                <a class="boton w-100-big" href="historico.php">Histórico de juegos</a>
+                <a class="boton w-100-big" href="finTurno.php?editar=1">Editar último turno</a>
             </div>
         </div>
     </div>
 
-    <div class="botones f-right">
-        <div class="boton-div">
-            <a class="boton f-right" href="finTurno.php">Fin de turno</a>
-        </div>
-    </div>
 
 </div>
 <?php require_once '../views/layouts/footer.php' ?>

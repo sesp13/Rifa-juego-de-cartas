@@ -20,9 +20,6 @@ $deudaTotal = 0;
         <h3 class="entrada">Valor de la entrada: $ <?= $_SESSION['entrada'] ?></h3>
         <h3 class="volada">Valor de la volada : $ <?= $_SESSION['volada'] ?></h3>
         <h3 class="volada">Juego a: <?= $_SESSION['tope'] ?> puntos</h3>
-        <?php if ($tablero->getValorActual() > 0) : ?>
-            <h3 class="volada">Deuda de jugadores eliminados: $ <?= $tablero->getValorActual() ?></h3>
-        <?php endif; ?>
     </div>
     <div class="contenedor-turno-final">
         <h3 class="turnos-final">Total de turnos: <?= $tablero->getTurno() - 1 ?></h3>

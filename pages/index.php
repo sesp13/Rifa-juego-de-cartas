@@ -33,7 +33,7 @@ frontController::enviarJuego();
 
             <div class="form-control">
                 <label>¿Cuál es el tope de puntos ?</label>
-                <input type="number" name="tope" min='1' step="1" placeholder="Inserta el número máximo de puntos antes de volar">
+                <input type="number" name="tope" min='1' step="1">
                 <p>Ejemplo: Si vuelo con 101 puntos, mi tope es 100</p>
             </div>
 
