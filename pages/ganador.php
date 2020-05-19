@@ -60,8 +60,13 @@ $deudaTotal = 0;
     <div class="datos-ganador">
         <p class="mensaje">Felicidades guerrero <?= $ganador->getNombre() ?> por tu gran batalla!</p>
         <p class="mensaje">
+            <?php $voladasGanador = $ganador->getVoladas();
+            if($voladasGanador > 0): ?>
             Volaste: <?php echo $ganador->getVoladas() . ' ';
                         echo $ganador->getVoladas() == 1 ? 'vez' : 'veces'; ?> pero no importa valió la pena
+            <?php else: ?>
+                No volaste ni una vez, genial!!!
+            <?php endif; ?>
         </p>
         <p class="mensaje">En total ahorraste: $ <?= $ganador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></p>
         <p class="mensaje">En total ganaste: $ <?= $deudaTotal + $tablero->getValorActual() ?></p>

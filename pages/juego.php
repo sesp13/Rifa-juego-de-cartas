@@ -51,7 +51,7 @@ $tablero = $_SESSION['tablero'];
             <?php endforeach ?>
         </table>
         <?php if ($tablero->getValorActual() > 0) : ?>
-            <h4>Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
+            <h4 id="deuda-eliminados">Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
         <?php endif; ?>
     </div>
     

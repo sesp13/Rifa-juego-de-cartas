@@ -236,6 +236,12 @@ td {
     }
 }
 
+@media(min-width:768px){
+    #deuda-eliminados{
+        font-size: 29px;
+    }
+}
+
 /* Botones de acción */
 
 .botones {
