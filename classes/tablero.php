@@ -304,4 +304,24 @@ class Tablero
             return true;
         }
     }
+
+    public function cambiarOrden($array)
+    {
+        $jugadores = $this->getJugadores();
+        if(count($array) != count($jugadores)){
+            $_SESSION['error'] = "Error al procesar petición, inténtalo de nuevo";
+            return true;
+        }
+
+        $resultado = [];
+
+        foreach($array as $indice){
+            $valor = intval($indice);
+            $resultado[] = $jugadores[$valor];
+        }
+
+        $this->setJugadores($resultado);
+        return true;
+
+    }
 }

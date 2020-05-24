@@ -43,5 +43,8 @@ $cantidad = $actualizar ? 1 : $_SESSION['cantidad'];
             <input type="submit" name="enviar" class="boton" value="Enviar">
         </form>
     </div>
+    <?php if ($actualizar) : ?>
+        <a class="boton" href="juego.php">Al tablero</a>
+    <?php endif ?>
 </div>
 <?php require_once '../views/layouts/footer.php' ?>
