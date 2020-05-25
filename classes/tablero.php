@@ -133,7 +133,8 @@ class Tablero
                     $_SESSION['error'] = 'Error insertando puntajes, inténtalo de nuevo';
                     return true;
                 }
-
+                //Resetear booleano de volados
+                $jugador->quitarVolado();
                 $puntos = intval($_POST["jugador-$indice"]);
                 //Suma de puntos por jugador
                 $jugador->sumarPuntos($puntos);
@@ -155,7 +156,6 @@ class Tablero
                     $jugador->setPuntaje($puntajeMaximo);
                     $volados[] = $jugador;
                     //Quitarle la categoría de volado al jugador
-                    $jugador->setEsVolado(false);
                 }
             }
 
@@ -206,7 +206,7 @@ class Tablero
         $this->setHistorico($historico);
     }
 
-    public function getDatosFinales($actualizar = null)
+    public function getDatosFinales()
     {
         $jugadores = $this->getJugadores();
         //Vivos comprueba qué jugadores siguen en pie para la lucha
@@ -218,30 +218,39 @@ class Tablero
             if (!$esVolado && $jugador->getPuntaje() > $puntaje) {
                 $puntaje = $jugador->getPuntaje();
             }
+            if ($jugador->getPuntaje() < -50) {
+                $vivos = [$indice];
+                $_SESSION['buenas'] = true;
+                break;
+            } else {
+                $_SESSION['buenas'] = false;
+            }
 
-            if (!$esVolado && !isset($actualizar)) {
+            if (!$esVolado) {
                 array_push($vivos, $indice);
             }
         }
 
         //Redirección a la página del ganador
-        if (count($vivos) == 1 && !isset($actualizar)) {
+        if (count($vivos) == 1) {
             $_SESSION['ganador'] = $vivos[0];
         }
 
         return $puntaje;
     }
 
-    public function getPerdedores($ganador)
+    public function getPerdedores($ganador, $buenas)
     {
         $indice = $ganador;
         $jugadores = $this->getJugadores();
         unset($jugadores[$indice]);
         if (!isset($_SESSION['perdedores'])) {
-            //Restar 1 volada para cada perdedor, ya que la última volada no cuenta
             foreach ($jugadores as $perdedor) {
                 $voladas = $perdedor->getVoladas();
-                $perdedor->setVoladas($voladas - 1);
+                //Restar 1 volada para cada perdedor, ya que la última volada no cuenta
+                if (!$buenas || $perdedor->getEsVolado()) {
+                    $perdedor->setVoladas($voladas - 1);
+                }
             }
             $_SESSION['perdedores'] = true;
         }
@@ -308,20 +317,19 @@ class Tablero
     public function cambiarOrden($array)
     {
         $jugadores = $this->getJugadores();
-        if(count($array) != count($jugadores)){
+        if (count($array) != count($jugadores)) {
             $_SESSION['error'] = "Error al procesar petición, inténtalo de nuevo";
             return true;
         }
 
         $resultado = [];
 
-        foreach($array as $indice){
+        foreach ($array as $indice) {
             $valor = intval($indice);
             $resultado[] = $jugadores[$valor];
         }
 
         $this->setJugadores($resultado);
         return true;
-
     }
 }

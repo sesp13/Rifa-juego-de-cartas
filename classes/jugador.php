@@ -144,15 +144,23 @@ class Jugador
     //Este método se usa cuando se edita un turno
     public function devolverCambios()
     {
+        $esVolado = $this->getEsVolado();
         $voladas = $this->getVoladas();
         $puntajeAdquirido = $this->getPuntajeAdquirido();
         $puntajePostVuelo = $this->getPuntajePostVuelo();
 
         $puntajeAnterior = $puntajePostVuelo - $puntajeAdquirido;
 
-        $valorVoladas = $voladas > 0 ? $voladas - 1 : 0;
+        if($esVolado){
+            $valorVoladas = $voladas > 0 ? $voladas - 1 : 0;
+            $this->setVoladas($valorVoladas);
+        }
 
         $this->setPuntaje($puntajeAnterior);
-        $this->setVoladas($valorVoladas);
+    }
+
+    public function quitarVolado()
+    {
+        $this->setEsVolado(false);
     }
 }

@@ -7,7 +7,7 @@ Utils::redirigir('id', 'juego.php', true);
 $tablero = $_SESSION['tablero'];
 $id = $_GET['id'];
 $ganador = $tablero->getJugadores()[$id];
-$perdedores = $tablero->getPerdedores($id);
+$perdedores = $tablero->getPerdedores($id, $_SESSION['buenas']);
 $eliminados = $tablero->getEliminados();
 $deudaTotal = 0;
 // $cantidad = $_SESSION['cantidad'];
