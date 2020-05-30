@@ -25,7 +25,7 @@ $tablero = $_SESSION['tablero']; ?>
                 </div>
             <?php endforeach; ?>
 
-            <input type="submit" name="enviar-cambio" class="boton" value="Enviar">
+            <input type="submit" name="enviar-cambio" class="boton" value="Cambiar">
         </form>
     </div>
     <a class="boton" href="juego.php">Al tablero</a>

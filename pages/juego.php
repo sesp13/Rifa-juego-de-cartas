@@ -1,7 +1,7 @@
 <?php require_once '../views/layouts/header.php';
 Utils::comprobarGanador();
 Utils::redirigir('tablero', 'jugadores.php');
-if(isset($_SESSION['historico'])){
+if (isset($_SESSION['historico'])) {
     header('Location:index.php');
 }
 $tablero = $_SESSION['tablero'];
@@ -31,7 +31,7 @@ $tablero = $_SESSION['tablero'];
         <?php Utils::deleteSession('volados') ?>
     <?php endif; ?>
 
-    <div class="contenedor-seccion">
+    <div class="contenedor-seccion" id="contenedor-tabla">
         <table>
             <tr id='inicial'>
                 <th>Nombre</th>
@@ -54,43 +54,45 @@ $tablero = $_SESSION['tablero'];
             <h4 id="deuda-eliminados">Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
         <?php endif; ?>
     </div>
-    
-    <div class="botones f-none-right">
-        <div class="boton-div">
-            <a class="boton f-none-right" href="finTurno.php">Fin de turno</a>
-        </div>
-    </div>
 
-    <div class="botones f-none-left">
-        <div class="boton-div">
-            <a class="boton" href="jugadores.php?update=1">Añadir jugador</a>
-            <a class="boton" id='eliminar-jugador'>Eliminar jugador</a>
-        </div>
-        <div id='formulario-eliminar'>
-            <?php require_once 'logic/eliminarJugador.php' ?>
-            <form method="POST">
-                <h3>Eliminar un jugador</h3>
-                <div class="form-control">
-                    <label>Escoge un jugador para eliminar</label>
-                    <select name="jugador">
-                        <?php foreach ($tablero->getJugadores() as $indice => $jugador) : ?>
-                            <option value="<?= $indice ?>"> <?= $jugador->getNombre() ?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <input type="submit" name="eliminar-jugador" class="boton" value="Eliminar">
-            </form>
-        </div>
-        <button class="boton w-100-big" id='mostrarOtros'>Otras acciones</button>
-        <div id="otros-botones">
+    <div class="boton-container">
+
+        <div class="botones" id="fin-turno-div">
             <div class="boton-div">
-                <a class="boton w-100-big" href="historico.php">Histórico de juegos</a>
-                <a class="boton w-100-big" href="finTurno.php?editar=1">Editar último turno</a>
-                <a class="boton w-100-big" href="cambioOrden.php">Cambiar Orden de jugadores</a>
+                <a class="boton f-none-right" href="finTurno.php">Fin de turno</a>
+            </div>
+        </div>
+
+        <div class="botones">
+            <div class="boton-div">
+                <a class="boton" href="jugadores.php?update=1">Añadir jugador</a>
+                <a class="boton" id='eliminar-jugador'>Eliminar jugador</a>
+            </div>
+            <div id='formulario-eliminar'>
+                <?php require_once 'logic/eliminarJugador.php' ?>
+                <form method="POST">
+                    <h3>Eliminar un jugador</h3>
+                    <div class="form-control">
+                        <label>Escoge un jugador para eliminar</label>
+                        <select name="jugador">
+                            <?php foreach ($tablero->getJugadores() as $indice => $jugador) : ?>
+                                <option value="<?= $indice ?>"> <?= $jugador->getNombre() ?> </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <input type="submit" name="eliminar-jugador" class="boton" value="Eliminar">
+                </form>
+            </div>
+            <button class="boton w-100-big" id='mostrarOtros'>Otras acciones</button>
+            <div id="otros-botones">
+                <div class="boton-div">
+                    <a class="boton w-100-big" href="historico.php">Histórico de juegos</a>
+                    <a class="boton w-100-big" href="finTurno.php?editar=1">Editar último turno</a>
+                    <a class="boton w-100-big" href="cambioOrden.php">Cambiar Orden de jugadores</a>
+                </div>
             </div>
         </div>
     </div>
-
 
 </div>
 <?php require_once '../views/layouts/footer.php' ?>
