@@ -13,6 +13,7 @@ require_once '../helpers/utils.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rifa</title>
+    <link rel="stylesheet" href='../assets/normalize.css'>
     <link rel="stylesheet" href='../assets/styles.css'>
 </head>
 

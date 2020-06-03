@@ -138,6 +138,12 @@ h2 {
   .informacion-partida h2 {
     float: left;
     padding: 10px;
+    font-size: 40px;
+  }
+}
+
+@media(min-width:860px){
+  .informacion-partida h2 {
     font-size: 45px;
   }
 }
@@ -155,6 +161,12 @@ h2 {
   .informacion-partida h3 {
     float: right;
     padding: 10px;
+    font-size: 35px;
+  }
+}
+
+@media(min-width:860px){
+  .informacion-partida h3 {
     font-size: 38px;
   }
 }
@@ -180,8 +192,8 @@ h2 {
 
 /* TABLA DE INFORMACION */
 
-#contenedor-tabla{
-    display: flex;
+#contenedor-tabla {
+  display: flex;
 }
 
 table {
@@ -203,9 +215,8 @@ table caption {
 }
 
 #inicial th {
-  font-size: 19px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: 23px;
+  padding: 15px;
 }
 
 @media (min-width: 768px) {
@@ -217,9 +228,9 @@ table caption {
 
 td {
   border-top: 1px solid wheat;
-  padding: 2px;
+  padding: 10px;
   font-family: "Times New Roman", Times, serif;
-  font-size: 19px;
+  font-size: 23px;
 }
 
 @media (min-width: 768px) {
@@ -228,6 +239,12 @@ td {
     padding: 15px;
     font-family: "Times New Roman", Times, serif;
     font-size: 28px;
+  }
+}
+
+@media (max-width: 590px) {
+  .only-big {
+    display: none;
   }
 }
 
@@ -326,7 +343,7 @@ td {
 .boton:hover {
   cursor: pointer;
   background: gray;
-  transform: scale(1.1,1.1);
+  transform: scale(1.1, 1.1);
 }
 
 .boton-final {

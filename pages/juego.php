@@ -36,17 +36,17 @@ $tablero = $_SESSION['tablero'];
             <tr id='inicial'>
                 <th>Nombre</th>
                 <th>Puntaje</th>
-                <th>Vuela con</th>
+                <th class="only-big">Vuela con</th>
                 <th>Número de voladas</th>
-                <th>Deuda acumulada</th>
+                <th class="only-big">Deuda acumulada</th>
             </tr>
             <?php foreach ($tablero->getJugadores() as $indice => $jugador) : ?>
                 <tr>
                     <td><?= $jugador->getNombre() ?></td>
                     <td><?= $jugador->getPuntaje() ?></td>
-                    <td><?= $jugador->getPuntosRestantes() ?></td>
+                    <td class="only-big"><?= $jugador->getPuntosRestantes() ?></td>
                     <td><?= $jugador->getVoladas() ?></td>
-                    <td><?= $jugador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></td>
+                    <td class="only-big"><?= $jugador->calcularDeuda($tablero->getValorEntrada(), $tablero->getValorVolada()) ?></td>
                 </tr>
             <?php endforeach ?>
         </table>
