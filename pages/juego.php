@@ -50,10 +50,10 @@ $tablero = $_SESSION['tablero'];
                 </tr>
             <?php endforeach ?>
         </table>
-        <?php if ($tablero->getValorActual() > 0) : ?>
-            <h4 id="deuda-eliminados">Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
-        <?php endif; ?>
     </div>
+    <?php if ($tablero->getValorActual() > 0) : ?>
+        <h4 id="deuda-eliminados">Deuda de los jugadores eliminados : $ <?= $tablero->getValorActual() ?></h4>
+    <?php endif; ?>
 
     <div class="boton-container">
 
