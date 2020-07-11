@@ -89,6 +89,7 @@ $tablero = $_SESSION['tablero'];
                     <a class="boton w-100-big" href="historico.php">Histórico de juegos</a>
                     <a class="boton w-100-big" href="finTurno.php?editar=1">Editar último turno</a>
                     <a class="boton w-100-big" href="cambioOrden.php">Cambiar Orden de jugadores</a>
+                    <a class="boton w-100-big" href="nuevoRepartidor.php">Elegir nuevo repartidor</a>
                 </div>
             </div>
         </div>

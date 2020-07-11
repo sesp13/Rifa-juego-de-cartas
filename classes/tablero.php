@@ -332,4 +332,17 @@ class Tablero
         $this->setJugadores($resultado);
         return true;
     }
+
+    public function nuevoRepartidor($index)
+    {
+        $jugadores = $this->getJugadores();
+
+        if (!isset($jugadores[$index])) {
+            $_SESSION['error'] = "El jugador seleccionado no existe, por favor inténtalo de nuevo";
+            return true;
+        }
+
+        $this->setContadorTurno($index);
+        header("Location:juego.php");
+    }
 }
